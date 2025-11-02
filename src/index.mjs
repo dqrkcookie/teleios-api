@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-const mongoUri = process.env.MONGO_URI || "mongodb://localhost:27017/detection";
+const mongoUri = process.env.MONGO_URI || "mongodb+srv://teleios_db:teleios_db1@cluster0.q0iubnl.mongodb.net/detection";
 
 try {
   await mongoose.connect(mongoUri);
@@ -17,6 +17,10 @@ try {
 } catch (err) {
   console.log(err);
 }
+
+app.get("/", (req, res) => {
+  res.status(200).send({ msg: "Server is running" });
+});
 
 app.post("/detection", async (req, res) => {
   const { body } = req;
@@ -48,10 +52,6 @@ app.get("/video-link", async (req, res) => {
     nightVisionCamera:
       "https://jonell-unclaimed-demetrice.ngrok-free.dev/stream/night_vision",
   };
-
-  app.get("/", (req, res) => {
-    res.status(200).send({ msg: "Server is running" });
-  });
 
   const withTimeout = (ms) => {
     const controller = new AbortController();
