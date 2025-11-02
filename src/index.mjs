@@ -43,10 +43,15 @@ app.get("/detection", async (req, res) => {
 
 app.get("/video-link", async (req, res) => {
   const LINKS = {
-    thermalCamera: "https://jonell-unclaimed-demetrice.ngrok-free.dev/stream/thermal",
+    thermalCamera:
+      "https://jonell-unclaimed-demetrice.ngrok-free.dev/stream/thermal",
     nightVisionCamera:
       "https://jonell-unclaimed-demetrice.ngrok-free.dev/stream/night_vision",
   };
+
+  app.get("/", (req, res) => {
+    res.status(200).send({ msg: "Server is running" });
+  });
 
   const withTimeout = (ms) => {
     const controller = new AbortController();
@@ -57,7 +62,10 @@ app.get("/video-link", async (req, res) => {
   async function isReachable(url) {
     try {
       const { controller, timeout } = withTimeout(2000);
-      const resp = await fetch(url, { method: "GET", signal: controller.signal });
+      const resp = await fetch(url, {
+        method: "GET",
+        signal: controller.signal,
+      });
       clearTimeout(timeout);
       return resp.ok;
     } catch (_err) {
