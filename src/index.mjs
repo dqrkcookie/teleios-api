@@ -48,9 +48,9 @@ app.get("/detection", async (req, res) => {
 app.get("/video-link", async (req, res) => {
   const LINKS = {
     thermalCamera:
-      "https://blackjack-requiring-projects-rooms.trycloudflare.com/stream/thermal",
+      "https://hrs-bio-tale-timber.trycloudflare.com/stream/thermlas",
     nightVisionCamera:
-      "https://blackjack-requiring-projects-rooms.trycloudflare.com/stream/night_vision",
+      "https://hrs-bio-tale-timber.trycloudflare.com/stream/night_vision",
   };
 
   const withTimeout = (ms) => {
