@@ -48,7 +48,7 @@ app.get("/detection", async (req, res) => {
 app.get("/video-link", async (req, res) => {
   const LINKS = {
     thermalCamera:
-      "https://hrs-bio-tale-timber.trycloudflare.com/stream/thermlas",
+      "https://hrs-bio-tale-timber.trycloudflare.com/stream/thermal",
     nightVisionCamera:
       "https://hrs-bio-tale-timber.trycloudflare.com/stream/night_vision",
   };
