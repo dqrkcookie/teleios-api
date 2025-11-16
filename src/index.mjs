@@ -48,9 +48,9 @@ app.get("/detection", async (req, res) => {
 app.get("/video-link", async (req, res) => {
   const LINKS = {
     thermalCamera:
-      "https://subsection-leading-minutes-petersburg.trycloudflare.com/stream/thermal",
+      "https://teleios.dpdns.org/stream/thermal",
     nightVisionCamera:
-      "https://subsection-leading-minutes-petersburg.trycloudflare.com/stream/night_vision",
+      "https://teleios.dpdns.org/stream/night_vision",
   };
 
   const withTimeout = (ms) => {
