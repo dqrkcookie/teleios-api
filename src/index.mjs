@@ -61,14 +61,26 @@ app.get("/video-link", async (req, res) => {
 
   async function isReachable(url) {
     try {
-      const { controller, timeout } = withTimeout(2000);
+      // Increased timeout to 5 seconds for Cloudflare tunnel connections
+      // Cloudflare tunnels can take longer to establish, especially on initial connection
+      const { controller, timeout } = withTimeout(5000);
       const resp = await fetch(url, {
         method: "GET",
         signal: controller.signal,
+        headers: {
+          'Accept': '*/*',
+        },
       });
       clearTimeout(timeout);
-      return resp.ok;
+      // Check if response is ok (2xx status) or if it's a Cloudflare error page
+      // Cloudflare tunnel errors typically return 502, 503, or 504
+      if (resp.ok) {
+        return true;
+      }
+      // If it's a Cloudflare error, the stream is not ready
+      return false;
     } catch (_err) {
+      // Network errors, timeouts, or DNS resolution failures mean stream is not ready
       return false;
     }
   }

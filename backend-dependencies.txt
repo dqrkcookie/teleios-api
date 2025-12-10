@@ -1,0 +1,5 @@
+backend@1.0.0 C:\Users\DarkCookie\documents\THESIS\teleios\backend
+├── cors@2.8.5
+├── express@5.1.0
+└── mongoose@8.19.2
+
